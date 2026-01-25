@@ -49,7 +49,7 @@ This is a small MCP server that exposes tools for multiple work systems
 
 ## Extending
 
-Add new tools for Slack, GitHub, or other services in `server.js` by:
+Add new tools for Slack, GitHub, or other services in `server.ts` by:
 
 1) Defining a new tool in the `ListToolsRequestSchema` handler
 2) Handling the tool in the `CallToolRequestSchema` handler
