@@ -7,6 +7,10 @@ This is a small MCP server that exposes tools for multiple work systems
 
 - `jira_get_issue` - Fetch a Jira issue by key
 - `jira_search` - Search Jira using JQL
+- `slack_get_message_by_url` - Fetch a Slack message by URL
+- `slack_get_channel_history` - Fetch recent Slack messages
+- `slack_find_channel` - Resolve channel name to ID
+- `slack_find_user` - Resolve user by email or display name
 
 ## Setup
 
@@ -20,6 +24,7 @@ This is a small MCP server that exposes tools for multiple work systems
    - `JIRA_EMAIL=you@company.com`
    - `JIRA_TOKEN=your_api_token`
    - `JIRA_API_VERSION=3`
+   - `SLACK_TOKEN=xoxb-your-slack-bot-token`
 
 3) Register the MCP server in Cursor (`~/.cursor/mcp.json`):
 
@@ -28,12 +33,16 @@ This is a small MCP server that exposes tools for multiple work systems
      "mcpServers": {
        "work-integrations-mcp": {
          "command": "npx",
-         "args": ["tsx", "/ABS/PATH/jira-mcp/server.ts"],
+         "args": [
+           "tsx",
+           "/ABS/PATH/jira-mcp/server.ts"
+         ],
          "env": {
            "JIRA_BASE": "https://company.atlassian.net",
            "JIRA_EMAIL": "you@company.com",
            "JIRA_TOKEN": "your_api_token",
-           "JIRA_API_VERSION": "3"
+           "JIRA_API_VERSION": "3",
+           "SLACK_TOKEN": "xoxb-your-slack-bot-token"
          }
        }
      }
@@ -46,6 +55,24 @@ This is a small MCP server that exposes tools for multiple work systems
 
 - "Use `jira_get_issue` with key `CVR-248`"
 - "Search Jira with JQL: `project = CVR ORDER BY updated DESC`"
+- "Use `slack_get_message_by_url` with url `https://...`"
+- "Use `slack_get_channel_history` with channel `general`"
+- "Use `slack_find_user` with email `user@company.com`"
+
+## Slack setup notes
+
+Create a Slack App and install it in your workspace. Minimum scopes for
+public channels:
+
+- `channels:read`
+- `channels:history`
+- `users:read`
+- `users:read.email`
+
+For private channels, add:
+
+- `groups:read`
+- `groups:history`
 
 ## Extending
 

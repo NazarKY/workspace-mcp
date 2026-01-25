@@ -6,13 +6,14 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { mergeToolModules } from "./core/toolRegistry.js";
 import { jiraToolModule } from "./services/jira/tools.js";
+import { slackToolModule } from "./services/slack/tools.js";
 
 const server = new Server(
   { name: "jira-mcp", version: "1.0.0" },
   { capabilities: { tools: {} } }
 );
 
-const { tools, handlers } = mergeToolModules([jiraToolModule]);
+const { tools, handlers } = mergeToolModules([jiraToolModule, slackToolModule]);
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools,
