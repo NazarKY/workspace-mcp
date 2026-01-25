@@ -49,10 +49,12 @@ This is a small MCP server that exposes tools for multiple work systems
 
 ## Extending
 
-Add new tools for Slack, GitHub, or other services in `server.ts` by:
+Add new tools for Slack, GitHub, or other services by adding a new folder
+under `services/` and registering the module in `server.ts`:
 
-1) Defining a new tool in the `ListToolsRequestSchema` handler
-2) Handling the tool in the `CallToolRequestSchema` handler
-3) Adding new env variables in the Cursor MCP config if needed
+1) Create `services/<service>/client.ts` for auth + API calls
+2) Create `services/<service>/tools.ts` exporting a `ToolModule`
+3) Import the module in `server.ts` and pass it to `mergeToolModules`
+4) Add any new env variables in the Cursor MCP config if needed
 
 Keep the tool names stable so existing prompts continue to work.
