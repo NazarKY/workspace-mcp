@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch, { type RequestInit } from "node-fetch";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
@@ -22,7 +22,10 @@ const server = new Server(
   { capabilities: { tools: {} } }
 );
 
-const jiraRequest = async (path, options = {}) => {
+const jiraRequest = async (
+  path: string,
+  options: RequestInit = {}
+): Promise<unknown> => {
   const res = await fetch(`${JIRA_BASE}${path}`, {
     ...options,
     headers: {

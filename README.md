@@ -27,8 +27,8 @@ This is a small MCP server that exposes tools for multiple work systems
    {
      "mcpServers": {
        "work-integrations-mcp": {
-         "command": "node",
-         "args": ["/ABS/PATH/jira-mcp/server.js"],
+         "command": "npx",
+         "args": ["tsx", "/ABS/PATH/jira-mcp/server.ts"],
          "env": {
            "JIRA_BASE": "https://company.atlassian.net",
            "JIRA_EMAIL": "you@company.com",

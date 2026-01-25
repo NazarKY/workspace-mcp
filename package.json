@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
-    "start": "node server.js",
+    "start": "tsx server.ts",
+    "typecheck": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,5 +15,10 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.3",
     "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2"
   }
 }
