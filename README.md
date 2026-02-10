@@ -11,6 +11,9 @@ This is a small MCP server that exposes tools for multiple work systems
 - `slack_get_channel_history` - Fetch recent Slack messages
 - `slack_find_channel` - Resolve channel name to ID
 - `slack_find_user` - Resolve user by email or display name
+- `confluence_get_page` - Fetch a Confluence page by ID
+- `confluence_get_page_by_url` - Fetch a Confluence page by URL
+- `confluence_search` - Search Confluence using CQL
 
 ## Setup
 
@@ -25,6 +28,9 @@ This is a small MCP server that exposes tools for multiple work systems
    - `JIRA_TOKEN=your_api_token`
    - `JIRA_API_VERSION=3`
    - `SLACK_TOKEN=xoxb-your-slack-bot-token`
+   - `CONFLUENCE_BASE=https://company.atlassian.net/wiki`
+   - `CONFLUENCE_EMAIL=you@company.com`
+   - `CONFLUENCE_TOKEN=your_api_token`
 
 3) Register the MCP server in Cursor (`~/.cursor/mcp.json`):
 
@@ -42,7 +48,10 @@ This is a small MCP server that exposes tools for multiple work systems
            "JIRA_EMAIL": "you@company.com",
            "JIRA_TOKEN": "your_api_token",
            "JIRA_API_VERSION": "3",
-           "SLACK_TOKEN": "xoxb-your-slack-bot-token"
+          "SLACK_TOKEN": "xoxb-your-slack-bot-token",
+          "CONFLUENCE_BASE": "https://company.atlassian.net/wiki",
+          "CONFLUENCE_EMAIL": "you@company.com",
+          "CONFLUENCE_TOKEN": "your_api_token"
          }
        }
      }
@@ -58,6 +67,9 @@ This is a small MCP server that exposes tools for multiple work systems
 - "Use `slack_get_message_by_url` with url `https://...`"
 - "Use `slack_get_channel_history` with channel `general`"
 - "Use `slack_find_user` with email `user@company.com`"
+- "Use `confluence_get_page` with id `123456`"
+- "Use `confluence_get_page_by_url` with url `https://.../wiki/...`"
+- "Use `confluence_search` with cql `space = DOCS and type = page`"
 
 ## Slack setup notes
 

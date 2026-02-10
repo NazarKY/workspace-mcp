@@ -7,13 +7,18 @@ import {
 import { mergeToolModules } from "./core/toolRegistry.js";
 import { jiraToolModule } from "./services/jira/tools.js";
 import { slackToolModule } from "./services/slack/tools.js";
+import { confluenceToolModule } from "./services/confluence/tools.js";
 
 const server = new Server(
   { name: "jira-mcp", version: "1.0.0" },
   { capabilities: { tools: {} } }
 );
 
-const { tools, handlers } = mergeToolModules([jiraToolModule, slackToolModule]);
+const { tools, handlers } = mergeToolModules([
+  jiraToolModule,
+  slackToolModule,
+  confluenceToolModule,
+]);
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools,
