@@ -5,8 +5,8 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { mergeToolModules } from "./core/toolRegistry.js";
+import type { ToolModule } from "./core/toolRegistry.js";
 import { jiraToolModule } from "./services/jira/tools.js";
-import { slackToolModule } from "./services/slack/tools.js";
 import { confluenceToolModule } from "./services/confluence/tools.js";
 
 const server = new Server(
@@ -14,11 +14,13 @@ const server = new Server(
   { capabilities: { tools: {} } }
 );
 
-const { tools, handlers } = mergeToolModules([
-  jiraToolModule,
-  slackToolModule,
-  confluenceToolModule,
-]);
+const modules: ToolModule[] = [jiraToolModule, confluenceToolModule];
+if (process.env.SLACK_TOKEN) {
+  const { slackToolModule } = await import("./services/slack/tools.js");
+  modules.push(slackToolModule);
+}
+
+const { tools, handlers } = mergeToolModules(modules);
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools,

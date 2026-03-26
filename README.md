@@ -11,8 +11,8 @@ This is a small MCP server that exposes tools for multiple work systems
 - `slack_get_channel_history` - Fetch recent Slack messages
 - `slack_find_channel` - Resolve channel name to ID
 - `slack_find_user` - Resolve user by email or display name
-- `confluence_get_page` - Fetch a Confluence page by ID
-- `confluence_get_page_by_url` - Fetch a Confluence page by URL
+- `confluence_get_page` - Fetch a Confluence page by ID (includes footer + inline comments with nested replies)
+- `confluence_get_page_by_url` - Fetch a Confluence page by URL (includes footer + inline comments with nested replies)
 - `confluence_search` - Search Confluence using CQL
 
 ## Setup
